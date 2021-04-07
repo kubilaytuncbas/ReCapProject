@@ -6,15 +6,21 @@ using System;
 
 namespace ConsoleUI
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
-            CarManager carmanager = new CarManager(new EfCarDal());
-            foreach(var car in carmanager.GetCarDetails())
-            {
-                Console.WriteLine(car.CarName + "---" + car.ColorName + "----" + car.BrandName + "--" + car.DailyPrice);
-            }
+            //CarManager carManager = new CarManager(new EfCarDal());
+            //RentalManager rentalManager = new RentalManager(new EfRentalDal());
+            //var result=rentalManager.Add(new Rental {CustomerId=1,CarId=1,RentDate=DateTime.Now,ReturnDate=new DateTime(2021,4,8) });
+            //Console.WriteLine(result.Message);
+            UserManager userManager = new UserManager(new EfUserDal());
+            var result2 =userManager.Add(new User {FirstName="Kubilay",LastName="Tuncbas",Email="tuncbaskubilay@gmail.com",Password="123456Kk.."});
+            Console.WriteLine(result2.Message);
+
+            
+
+
           
             
         }

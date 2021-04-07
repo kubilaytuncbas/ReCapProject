@@ -1,4 +1,7 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Utilities;
+using Core.Utilities.Results;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
@@ -17,24 +20,57 @@ namespace Business.Concrete
             _carDal = carDal;
         }
 
-        public List<Car> GetAll()
+        public IResult Add(Car car)
         {
-            return _carDal.GetAll();
+            if (car.CarName.Length<2)
+            {
+                //magic strings
+                return new ErrorResult (Messages.CarNameInvalid);
+            }
+            
+            
+                _carDal.Add(car);
+                return new SuccessResult(Messages.CarAdded);
+            
+            
         }
 
-        public List<CarDetailDto> GetCarDetails()
+        public IResult Delete(Car car)
         {
-            return _carDal.GetCarDetails();
+            _carDal.Delete(car);
+            return new Result(true,"Ürün Silindi");
+            
         }
 
-        public List<Car> GetCarsByBrandId(int id)
+        public IDataResult<List<Car>> GetAll()
         {
-            return _carDal.GetAll(b => b.BrandId == id);
+            return new DataResult<List<Car>>(_carDal.GetAll(),true,"asdasdas");
         }
 
-        public List<Car> GetCarsByColorId(int id)
+        public IDataResult<Car> GetById(int carId)
         {
-            return _carDal.GetAll(c => c.ColorId == id);
+            return  new SuccessDataResult<Car>(_carDal.Get(p=>p.CarId==carId));
+        }
+
+        public IDataResult<List<CarDetailDto>> GetCarDetails()
+        {
+            return new SuccessDataResult<List<CarDetailDto>>(_carDal.GetCarDetails());
+        }
+
+        public IDataResult<List<Car>> GetCarsByBrandId(int id)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(b => b.BrandId == id));
+        }
+
+        public IDataResult<List<Car>> GetCarsByColorId(int id)
+        {
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.ColorId == id));
+        }
+
+        public IResult Update(Car car)
+        {
+            _carDal.Uptade(car);
+            return new Result(true,"Ürün Güncellendi");
         }
     }
 }
