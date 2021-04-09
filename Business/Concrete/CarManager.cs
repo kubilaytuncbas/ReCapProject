@@ -38,13 +38,17 @@ namespace Business.Concrete
         public IResult Delete(Car car)
         {
             _carDal.Delete(car);
-            return new Result(true,"Ürün Silindi");
+            return new SuccessResult(Messages.CarDeleted);
             
         }
 
         public IDataResult<List<Car>> GetAll()
         {
-            return new DataResult<List<Car>>(_carDal.GetAll(),true,"asdasdas");
+            if (DateTime.Now.Hour==23)
+            {
+                return new ErrorDataResult<List<Car>>(_carDal.GetAll(), Messages.CarNameInvalid);
+            }
+            return new SuccessDataResult<List<Car>>(_carDal.GetAll(),Messages.CarAdded);
         }
 
         public IDataResult<Car> GetById(int carId)
@@ -70,7 +74,7 @@ namespace Business.Concrete
         public IResult Update(Car car)
         {
             _carDal.Uptade(car);
-            return new Result(true,"Ürün Güncellendi");
+            return new SuccessResult(Messages.CarUpdated);
         }
     }
 }

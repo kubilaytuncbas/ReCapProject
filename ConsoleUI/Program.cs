@@ -17,7 +17,8 @@ namespace ConsoleUI
             UserManager userManager = new UserManager(new EfUserDal());
             var result2 =userManager.Add(new User {FirstName="Kubilay",LastName="Tuncbas",Email="tuncbaskubilay@gmail.com",Password="123456Kk.."});
             Console.WriteLine(result2.Message);
-
+            
+            
             
 
 
