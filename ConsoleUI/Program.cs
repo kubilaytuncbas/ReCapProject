@@ -10,7 +10,7 @@ namespace ConsoleUI
     {
         static void Main(string[] args)
         {
-            CarManager carManager = new CarManager(new EfCarDal());
+            CarManager carManager = new CarManager(new EfCarDal(),new BrandManager(new EfBrandDal()));
             //RentalManager rentalManager = new RentalManager(new EfRentalDal());
             //var result=rentalManager.Add(new Rental {CustomerId=1,CarId=1,RentDate=DateTime.Now,ReturnDate=new DateTime(2021,4,8) });
             //Console.WriteLine(result.Message);

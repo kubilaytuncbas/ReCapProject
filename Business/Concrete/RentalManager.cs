@@ -40,7 +40,7 @@ namespace Business.Concrete
 
         public IResult Update(Rental rental)
         {
-            _rentalDal.Uptade(rental);
+            _rentalDal.Update(rental);
             return new SuccessResult();
         }
         public DataResult<List<RentalDetailDto>> GetRentalDetails()

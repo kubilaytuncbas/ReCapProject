@@ -34,7 +34,7 @@ namespace DataAccess.Concrete.InMemory
 
         public void Delete(Car car)
         {
-            Car carToDelete = _cars.SingleOrDefault(p => p.CarId == car.CarId);
+            Car carToDelete = _cars.SingleOrDefault(p => p.Id == car.Id);
             _cars.Remove(car);
         }
 
@@ -60,7 +60,7 @@ namespace DataAccess.Concrete.InMemory
 
         public List<Car> GetById(Car car)
         {
-            return _cars.Where(p => p.CarId == car.CarId).ToList();
+            return _cars.Where(p => p.Id == car.Id).ToList();
 
         }
 
@@ -69,9 +69,9 @@ namespace DataAccess.Concrete.InMemory
             throw new NotImplementedException();
         }
 
-        public void Uptade(Car car)
+        public void Update(Car car)
         {
-            Car carsToUptade = _cars.SingleOrDefault(p => p.CarId == car.CarId);
+            Car carsToUptade = _cars.SingleOrDefault(p => p.Id == car.Id);
             carsToUptade.BrandId = car.BrandId;
             carsToUptade.ColorId = car.ColorId;
             carsToUptade.DailyPrice = car.DailyPrice;

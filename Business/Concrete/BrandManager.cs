@@ -31,20 +31,17 @@ namespace Business.Concrete
             return new Result(true, "Marka başarıyla silindi");
         }
 
-        public List<Brand> GetAll()
+        public IDataResult<List<Brand>> GetAll()
         {
-            return _brandDal.GetAll();
+            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
         }
 
         public IResult Update(Brand brand)
         {
-            _brandDal.Uptade(brand);
+            _brandDal.Update(brand);
             return new Result(true, "Marka başarıyla güncellendi");
         }
 
-        IDataResult<List<Brand>> IBrandService.GetAll()
-        {
-            return new SuccessDataResult<List<Brand>>(_brandDal.GetAll());
-        }
+       
     }
 }
