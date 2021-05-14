@@ -25,7 +25,7 @@ namespace DataAccess.Concrete.EntityFramework
                              join m in context.Customers
                              on r.CustomerId equals m.CustomerId
                              join u in context.Users
-                             on m.UserId equals u.UserId
+                             on m.UserId equals u.Id
 
                              select new RentalDetailDto { CustomerId=m.CustomerId,RentalId=r.RentalId,RentDate=r.RentDate};
                 return result.ToList();
